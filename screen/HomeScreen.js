@@ -1,16 +1,30 @@
 import * as React from 'react';
 import { FAB, Portal, Provider,icon } from 'react-native-paper';
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View,Modal,SafeAreaView,Button } from 'react-native'
-
+import { StyleSheet, Text, View,Modal,SafeAreaView,Button,TouchableOpacity,Image } from 'react-native'
+import { HeaderButtons } from "react-navigation-header-buttons";
+const IoniconsHeaderButton = (props) => (
+  <HeaderButton IconComponent={Ionicons} iconSize={23} {...props} />
+);
 const HomeScreen = ({ navigation }) => {
   const [state, setState] = React.useState({ open: false });
   const[showModal,setShowModal] = React.useState(false)
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
-
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
+          <TouchableOpacity onPress={() => setShowModal(!showModal)}>
+            <Ionicons name="add-circle" size="40px" color="#FEE00" />
+          </TouchableOpacity>
+        </HeaderButtons>
+      ),
+    });
+  }, [navigation]);
   return (
     <Provider>
+      <View>
     <Portal>    
         <FAB.Group
           open={open}
@@ -58,6 +72,10 @@ const HomeScreen = ({ navigation }) => {
                 />
             </View>
       </Modal>
+      <View>
+        <Text></Text>
+      </View>
+      </View>
     </Provider>
   );
 };

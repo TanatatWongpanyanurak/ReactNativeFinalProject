@@ -13,7 +13,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screen/HomeScreen";
 import Info from "./screen/Info";
 import Calenda from "./screen/Calenda";
-
+import note from "./screen/note";
 
 const MyTheme ={
   ...DefaultTheme,
@@ -58,6 +58,7 @@ function MyDrawer() {
       <Stack.Screen name="Info" component={Info} />
       <Stack.Screen name="Home" component={MyTab} />
       <Stack.Screen name="Setting" component={SettingScreen} />
+      <Stack.Screen name="Note" component={note} />
     </Stack.Navigator>
   );
 }
@@ -84,7 +85,7 @@ function MyTab (){
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Calenda" component={Calenda} />
+      <Tab.Screen name="Calenda" component={Calenda} /> 
       <Tab.Screen name="Setting" component={SettingScreen} />
       </Tab.Navigator>
     )
