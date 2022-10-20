@@ -22,7 +22,7 @@ function Calenda({ navigation, route }) {
   const [showModal, setShowModal] = React.useState(false);
   const handleAddTask = () => {
     setSelectedItem([...selecteditem, selected])
-    setSelected(null);
+    setSelected(null)
   }
   const completeTask = (index) => {
     let itemsCopy = [...selecteditem];
