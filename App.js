@@ -1,85 +1,107 @@
+import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
 import React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
-  Box,
-} from "native-base";
-import NativeBaseIcon from "./components/NativeBaseIcon";
-import { Platform } from "react-native";
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./screen/HomeScreen";
+import Login from "./screen/login";
+import Signup from "./screen/Signup";
+import Calenda from "./screen/Calenda";
 
-// Define the config
-const config = {
-  useSystemColorMode: false,
-  initialColorMode: "dark",
+
+const MyTheme ={
+  ...DefaultTheme,
+  colors:{
+    ...DefaultTheme.colors,
+    primary:'rgb(12,90,85)'
+
+  }
+}
+
+function SettingScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Setting!!!</Text>
+      <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
+    </View>
+  );
+}
+
+function CustomDrawerContent(props) {
+  return (
+    <SafeAreaView>
+      <DrawerContentScrollView {...props}>
+        <DrawerItemList {...props} />
+      </DrawerContentScrollView>
+    </SafeAreaView>
+  );
+}
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+function MyDrawer() {
+  return (
+    <Stack.Navigator
+      useLegacyImplementation
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={{
+        drawerStyle: {
+          width: 240,
+        },
+      }}
+    >
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Sign up" component={Signup} />
+      <Stack.Screen name="Home" component={MyTab} />
+      <Stack.Screen name="Setting" component={SettingScreen} />
+    </Stack.Navigator>
+  );
+}
+
+
+function MyTab (){
+    return(
+      <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === "Home") {
+            iconName = focused
+              ? "ios-information-circle"
+              : "ios-information-circle-outline";
+          } else if (route.name === "Setting") {
+            iconName = focused ? "list-outline" : "ios-list";
+          }
+          //you can return any compernent that you like here
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Calenda" component={Calenda} /> 
+      <Tab.Screen name="Setting" component={SettingScreen} />
+      </Tab.Navigator>
+    )
+
+}
+const App = () => {
+  return (
+    
+      <NavigationContainer theme={MyTheme}>
+        <MyDrawer/>
+      </NavigationContainer>
+      
+  );
 };
 
-// extend the theme
-export const theme = extendTheme({ config });
+export default App;
 
-export default function App() {
-  return (
-    <NativeBaseProvider>
-      <Center
-        _dark={{ bg: "blueGray.900" }}
-        _light={{ bg: "blueGray.50" }}
-        px={4}
-        flex={1}
-      >
-        <VStack space={5} alignItems="center">
-          <NativeBaseIcon />
-          <Heading size="lg">Welcome to NativeBase</Heading>
-          <HStack space={2} alignItems="center">
-            <Text>Edit</Text>
-            <Box
-              _web={{
-                _text: {
-                  fontFamily: "monospace",
-                  fontSize: "sm",
-                },
-              }}
-              px={2}
-              py={1}
-              _dark={{ bg: "blueGray.800" }}
-              _light={{ bg: "blueGray.200" }}
-            >
-              App.js
-            </Box>
-            <Text>and save to reload.</Text>
-          </HStack>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={"xl"}>
-              Learn NativeBase
-            </Text>
-          </Link>
-          <ToggleDarkMode />
-        </VStack>
-      </Center>
-    </NativeBaseProvider>
-  );
-}
-
-// Color Switch Component
-function ToggleDarkMode() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === "light"}
-        onToggle={toggleColorMode}
-        aria-label={
-          colorMode === "light" ? "switch to dark mode" : "switch to light mode"
-        }
-      />
-      <Text>Light</Text>
-    </HStack>
-  );
-}
+const styles = StyleSheet.create({});
