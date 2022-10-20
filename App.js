@@ -11,8 +11,7 @@ import {
 } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screen/HomeScreen";
-import Login from "./screen/login";
-import Signup from "./screen/Signup";
+import Info from "./screen/Info";
 import Calenda from "./screen/Calenda";
 
 
@@ -56,8 +55,7 @@ function MyDrawer() {
         },
       }}
     >
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Sign up" component={Signup} />
+      <Stack.Screen name="Info" component={Info} />
       <Stack.Screen name="Home" component={MyTab} />
       <Stack.Screen name="Setting" component={SettingScreen} />
     </Stack.Navigator>
