@@ -84,8 +84,7 @@ function MyTab (){
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Calenda" component={Calenda} /> 
-      <Tab.Screen name="Calenda" component={Calenda} /> 
+      <Tab.Screen name="Calenda" component={Calenda} />
       <Tab.Screen name="Setting" component={SettingScreen} />
       </Tab.Navigator>
     )
