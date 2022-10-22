@@ -3,14 +3,16 @@ import { HeaderButtons } from "react-navigation-header-buttons";
 import { Ionicons } from "@expo/vector-icons";
 import { Calendar } from 'react-native-calendars';
 import React from 'react'
-import Task from './ShowTSList';
-import Calenda from './Calenda';
+import { TextInput } from 'react-native-paper';
+import ColorPicker from 'react-native-wheel-color-picker'
 
     
 const IoniconsHeaderButton = (props) => (
     <HeaderButton IconComponent={Ionicons} iconSize={23} {...props} />
   );
 const note = ({navigation,route}) => {
+  const [text, setText] = React.useState("");
+  const[showModal,setShowModal] = React.useState(false)
     React.useLayoutEffect(() => {
         navigation.setOptions({
           headerRight: () => (
@@ -24,7 +26,30 @@ const note = ({navigation,route}) => {
       }, [navigation]);
   return (
     <View>
-      <Task Text ={route.params?.selected} />
+      <Text style={{ fontSize: 25}}>DATE : {route.params?.selected}</Text>
+      <Modal
+         animationType='fade'
+         transparent={false}
+         visible={showModal}
+         onRequestClose={()=> alert('Model has Been closed')}
+        >
+           <View style ={styles.centeredView}>
+            <TextInput
+            label="Name"
+            value={text}
+              onChangeText={text => setText(text)}
+    />      
+      <ColorPicker
+    onColorSelected={color => alert(`Color selected: ${color}`)}
+    style={{flex: 1}}
+      />  
+               <Button     
+                    title='กรุณากดปุ่มเพื่อเปิดอีกครั้งไฟ'
+                    onPress={()=> setShowModal(!showModal)}
+                    style ={styles.buttonOpen}
+                />
+            </View>
+      </Modal>
     </View>
   )
 }

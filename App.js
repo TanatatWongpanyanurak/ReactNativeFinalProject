@@ -55,7 +55,7 @@ function MyDrawer() {
         },
       }}
     >
-      <Stack.Screen name="Info" component={Info} />
+      <Stack.Screen name="Info" component={Info} options ={{headerShown:false}} />
       <Stack.Screen name="Home" component={MyTab} />
       <Stack.Screen name="Setting" component={SettingScreen} />
       <Stack.Screen name="Note" component={note} />

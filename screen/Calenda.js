@@ -22,7 +22,7 @@ function Calenda({ navigation, route }) {
   const [showModal, setShowModal] = React.useState(false);
   const handleAddTask = () => {
     setSelectedItem([...selecteditem, selected])
-    setSelected(null)
+    setSelected(null);    
   }
   const completeTask = (index) => {
     let itemsCopy = [...selecteditem];
@@ -68,7 +68,7 @@ function Calenda({ navigation, route }) {
             },
           }
         }}
-        onDayPress={(day) => {handleAddTask();setSelected(day.dateString)}}
+        onDayPress={(day) => {handleAddTask();setSelected(day.dateString);navigation.navigate("Note",{selected})}}
         onDayLongPress={(day) => console.log('onDayLongPress', day)}
         onMonthChange={(date) => console.log('onMonthChange', date)}
         onPressArrowLeft={(goToPreviousMonth) => {
