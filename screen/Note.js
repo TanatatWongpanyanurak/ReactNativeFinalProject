@@ -35,7 +35,7 @@ const note = ({navigation,route}) => {
         >
            <View style ={styles.centeredView}>
             <TextInput
-            label="Name"
+            label="Nam"
             value={text}
               onChangeText={text => setText(text)}
     />      
