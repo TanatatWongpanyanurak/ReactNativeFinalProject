@@ -1,20 +1,17 @@
-import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
-import React from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Button, TextInput,SafeAreaView,Image} from "react-native";
+import { NavigationContainer,DefaultTheme } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
 import HomeScreen from "./screen/HomeScreen";
-import Info from "./screen/Info";
-// import Calenda from "./screen/Calenda";
-// import note from "./screen/note";
-
+import ProductScreen from "./screen/ProductScreen";
+import DetailScreen from "./screen/DetailScreen";
 const MyTheme ={
   ...DefaultTheme,
   colors:{
@@ -24,83 +21,71 @@ const MyTheme ={
   }
 }
 
-function SettingScreen({ navigation }) {
+   function CustomDrawerContent(props) {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Setting!!!</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
-    </View>
-  );
-}
+  <SafeAreaView>
+    <Image
+      source={require('C:/my-app/image/554681583a113f259901cfdae11d6358.jpg')}
+      style = {styles.sideMenuProfileIcon}
+    />
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem label="Close drawer" 
+      onPress={() => props.navigation.closeDrawer()} />
 
-function CustomDrawerContent(props) {
-  return (
-    <SafeAreaView>
-      <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
-      </DrawerContentScrollView>
+    </DrawerContentScrollView>
     </SafeAreaView>
-  );
-}
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-function MyDrawer() {
-  return (
-    <Stack.Navigator
-      useLegacyImplementation
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-      screenOptions={{
-        drawerStyle: {
-          width: 240,
-        },
-      }}
-    >
-      <Stack.Screen name="Info" component={Info} options ={{headerShown:false}} />
-      <Stack.Screen name="Home" component={MyTab} />
-      <Stack.Screen name="Setting" component={SettingScreen} />
-      {/* <Stack.Screen name="Note" component={note} /> */}
-    </Stack.Navigator>
-  );
-}
+   );
+ }
+      const Stack = createDrawerNavigator();
+      function ProductStack(){
+        return(
+          <Stack.Navigator screenOptions={{
+            headerStyle:{
+              backgroundColor:'#0096DA'
+            },
+            headerTintColor:'#ffff',
+            headerTitleStyle:{
+              fontWeight:'bold'
+            }
+
+          }}>
+            <Stack.Screen name ='Product' component={ProductScreen}/>
+            <Stack.Screen name ='Detail' component={DetailScreen}/>
+          </Stack.Navigator>
+        )
+      }
 
 
-function MyTab (){
-    return(
-      <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          if (route.name === "Home") {
-            iconName = focused
-              ? "ios-information-circle"
-              : "ios-information-circle-outline";
-          } else if (route.name === "Setting") {
-            iconName = focused ? "list-outline" : "ios-list";
+const Drawer = createDrawerNavigator();
+
+function MyDrawer (){
+  return(
+    <Drawer.Navigator useLegacyImplementation
+       drawerContent={(props)=><CustomDrawerContent{...props}/>}
+        screenOptions ={{
+          drawerStyle:{
+            width:240
           }
-          //you can return any compernent that you like here
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
-      })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      {/* <Tab.Screen name="Calenda" component={Calenda} />  */}
-      <Tab.Screen name="Setting" component={SettingScreen} />
-      </Tab.Navigator>
-    )
-
+        }}>
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Product" component={ProductStack} />
+      </Drawer.Navigator> 
+  );
 }
 const App = () => {
   return (
-    
-      <NavigationContainer theme={MyTheme}>
-        <MyDrawer/>
-      </NavigationContainer>
-      
+    <NavigationContainer theme={MyTheme}>
+      <MyDrawer/>
+    </NavigationContainer>
   );
 };
 
 export default App;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create
+({sideMenuProfileIcon: 
+  {resizeMode: 'center'
+  ,width: 100,height: 100,
+  borderRadius: 100 / 2,
+  alignSelf: 'center',},})
