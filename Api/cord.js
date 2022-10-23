@@ -5,9 +5,6 @@ export const Chord =[
    { Cname : 'A',
      image : require('C:/my-app/image/A/A-Chord.jpg')
    },
-   { Cname : 'Amaj7',
-      image : require('C:/my-app/image/A/Amaj7-Chord.jpg')
-   },
    { Cname : 'A7',
       image : require('C:/my-app/image/A/A7-Chord.jpg')
    },

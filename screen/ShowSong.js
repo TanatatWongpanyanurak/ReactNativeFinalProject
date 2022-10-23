@@ -4,32 +4,46 @@ import { db } from '../firebase/config.js'
 import { collection, getDocs } from "firebase/firestore";
 import { async } from '@firebase/util';
 import { useEffect, useState } from 'react'
-const Showcord = ({navigation,route}) => {
-  const {gui} = route.params
-  const [chord, setChord] = useState([])
-  const docRef = collection(db, gui)
+const ShowSong = ({navigation,route}) => {
+    const {ss} = route.params
+  const [song, setSong] = useState([])
+  const docRef = collection(db,'Song')
   useEffect(async () => {
-    const data = await getDocs(docRef,gui)
+    const data = await getDocs(docRef,'Song')
     let Data = []
     data.forEach((doc) => {
-      const dataC = doc.data()
+      const dataS = doc.data()
       Data.push({
         id: doc.id,
-        Cname: dataC.Cname,
-        image: dataC.image
+        Album: dataS.Album,
+        Genre: dataS.Genre,
+        Singer: dataS.Singer,
+        Sname: dataS.Sname
       })
     })
-    setChord(Data)
+    setSong(Data)
   }, [])
+
+  const ItemSeparatorView = () => {
+    return (
+        // Flat List Item Separator
+        <View
+            style={{
+                height: 0.5,
+                width: "100%",
+                backgroundColor: "#C8C8C8",
+            }}
+        />
+    );
+};
   const _renderItem = ({ item }) => {
     return (
       <View>
-        <Text>{item.Cname}</Text>
-        <Image
-           resizeMode="cover"
-          source={{ uri: item.image }}
-          style={styles.thumbnail}
-        />
+        <Text>Album: {item.Album}</Text>
+        <Text>Genre: {item.Genre}</Text>
+        <Text>Singer: {item.Singer}</Text>
+        <Text>Songname: {item.Sname}</Text>
+        
       </View>
     )
   }
@@ -38,7 +52,8 @@ const Showcord = ({navigation,route}) => {
   return (
     <View>
       <FlatList
-        data={chord}
+        data={song}
+        ItemSeparatorView = {ItemSeparatorView}
         keyExtractor={(item) => item.id.toString()}
         renderItem={_renderItem}
       />
@@ -47,7 +62,7 @@ const Showcord = ({navigation,route}) => {
 }
 
 
-export default Showcord
+export default ShowSong
 
 const styles = StyleSheet.create({
   container: {

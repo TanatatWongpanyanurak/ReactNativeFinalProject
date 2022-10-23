@@ -11,7 +11,10 @@ import {
 import React from "react";
 import HomeScreen from "./screen/HomeScreen";
 import ProductScreen from "./screen/ProductScreen";
-import DetailScreen from "./screen/DetailScreen";
+import Showcord from "./screen/Showcord.js"
+import ChordShow from "./screen/ChordShow";
+import ShowSong from "./screen/ShowSong";
+import SongShow from "./screen/SongShow"
 const MyTheme ={
   ...DefaultTheme,
   colors:{
@@ -24,6 +27,7 @@ const MyTheme ={
    function CustomDrawerContent(props) {
   return (
   <SafeAreaView>
+
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
       <DrawerItem label="Close drawer" 
@@ -33,7 +37,7 @@ const MyTheme ={
     </SafeAreaView>
    );
  }
-      const Stack = createDrawerNavigator();
+      const Stack = createNativeStackNavigator();
       function ProductStack(){
         return(
           <Stack.Navigator screenOptions={{
@@ -46,8 +50,26 @@ const MyTheme ={
             }
 
           }}>
-            <Stack.Screen name ='Product' component={ProductScreen}/>
-            <Stack.Screen name ='Detail' component={DetailScreen}/>
+            <Stack.Screen name ='ChordShow' component={ChordShow}/>
+            <Stack.Screen name ='Showcord' component={Showcord}/>
+          </Stack.Navigator>
+        )
+      }
+      const Stackz = createNativeStackNavigator();
+      function ProductStackz(){
+        return(
+          <Stack.Navigator screenOptions={{
+            headerStyle:{
+              backgroundColor:'#0096DA'
+            },
+            headerTintColor:'#ffff',
+            headerTitleStyle:{
+              fontWeight:'bold'
+            }
+
+          }}>
+            <Stackz.Screen name ='SongShow' component={SongShow}/>
+            <Stackz.Screen name ='ShowSong' component={ShowSong}/>
           </Stack.Navigator>
         )
       }
@@ -65,7 +87,8 @@ function MyDrawer (){
           }
         }}>
         <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Product" component={ProductStack} />
+        <Drawer.Screen name="ChordShow" component={ProductStack} />
+        <Drawer.Screen name="SongShow" component={ProductStackz} />
       </Drawer.Navigator> 
   );
 }
