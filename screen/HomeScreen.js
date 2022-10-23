@@ -1,16 +1,56 @@
 import * as React from 'react';
 import { FAB, Portal, Provider,icon } from 'react-native-paper';
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View,Modal,SafeAreaView,Button,TouchableOpacity,Image } from 'react-native'
+import { StyleSheet, Text, View,Modal,SafeAreaView,Button,TouchableOpacity,Image,FlatList} from 'react-native'
 import { HeaderButtons } from "react-navigation-header-buttons";
+import { Chord } from '../Api/cord';
 const IoniconsHeaderButton = (props) => (
   <HeaderButton IconComponent={Ionicons} iconSize={23} {...props} />
 );
-const HomeScreen = ({ navigation }) => {
-  const [state, setState] = React.useState({ open: false });
+const HomeScreen = ({ route,navigation }) => {
+
   const[showModal,setShowModal] = React.useState(false)
-  const onStateChange = ({ open }) => setState({ open });
-  const { open } = state;
+    
+  const _RenderChord = ({ item }) => {
+      return (
+        <SafeAreaView style={{ flex: 1 }}>
+          <TouchableOpacity
+                style={styles.addButtonStyle}
+                onPress={()=>{
+                  navigation.navigate('Detail',{
+                    name:item.name,
+                    cname:item.cname
+                  })
+                }}
+          >
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 180,
+            
+          }}>
+          <Text>{item.name}</Text>
+        <Image style={styles.introImageStyle} source={item.image} />
+        </View>
+        </TouchableOpacity>
+      </SafeAreaView>
+      )
+  } 
+
+  const ItemSeparatorView = () => {
+    return (
+      // Flat List Item Separator
+      <View
+        style={{
+          height: 0.5,
+          width: "100%",
+          backgroundColor: "#C8C8C8",
+        }}
+      />
+    );
+  };
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -23,70 +63,54 @@ const HomeScreen = ({ navigation }) => {
     });
   }, [navigation]);
   return (
-    <Provider>
-      <View>
-    <Portal>    
-        <FAB.Group
-          open={open}
-          iconName='plus'
-          actions={[
-            { iconName: 'plus', onPress: () => console.log('Pressed add') },
-            {
-              icon: 'star',
-              label: 'Star',
-              onPress: () => setShowModal(!showModal),
-            },
-            {
-              icon: 'email',
-              label: 'Email',
-              onPress: () => console.log('Pressed email'),
-            },
-            {
-              icon: 'bell',
-              label: 'Remind',
-              onPress: () => console.log('Pressed notifications'),
-            },
-          ]}
-          onStateChange={onStateChange}
-          onPress={() => {
-            if (open) {
-              // do something if the speed dial is open
-            }
-          }}
-        />
-      </Portal>
-      <Modal
-         animationType='fade'
-         transparent={false}
-         visible={showModal}
-         onRequestClose={()=> alert('Model has Been closed')}
-        >
-           <View style ={styles.centeredView}>
-                <Text style={styles.modalText}
-                >ไฟในห้องปิดอยู่!</Text>
-                
-                <Button     
-                    title='Switch'
-                    onPress={()=> setShowModal(!showModal)}
-                    style ={styles.buttonOpen}
-                />
-            </View>
-      </Modal>
-      <View>
-        <Text></Text>
-      </View>
-      </View>
-    </Provider>
+    <View>
+    <FlatList
+      data={Chord}
+      keyExtractor={(item) => {item.name.toString()}}
+      ItemSeparatorComponent={ItemSeparatorView}
+      renderItem={_RenderChord}
+    />
+  </View>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({centeredView: {flex: 1,justifyContent: 'center',alignItems: 'center',marginTop: 22,},
-modalView: {margin: 20,backgroundColor: 'white',borderRadius: 20,padding: 35,alignItems: 'center',shadowColor: '#000',
-shadowOffset: {width: 0,height: 2,},shadowOpacity: 0.25,shadowRadius: 4,elevation: 5,},
-button: {borderRadius: 20,padding: 10,elevation: 2,},
-buttonOpen: {backgroundColor: '#F194FF',},
-buttonClose: {backgroundColor: '#2196F3',},
-textStyle: {color: 'white',fontWeight: 'bold',textAlign: 'center',},
-modalText: {marginBottom: 15,textAlign: 'center',},});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    padding: 10,
+    justifyContent: 'center',
+  },
+  titleStyle: {
+    padding: 10,
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  paragraphStyle: {
+    padding: 20,
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  introImageStyle: {
+    width: 200,
+    height: 200,
+  },
+  introTextStyle: {
+    fontSize: 18,
+    color: 'black',
+    textAlign: 'center',
+    paddingVertical: 30,
+  },
+  introTitleStyle: {
+    fontSize: 25,
+    color: 'black',
+    textAlign: 'center',
+    marginBottom: 16,
+    fontWeight: 'bold',
+  },
+});
+

@@ -24,10 +24,6 @@ const MyTheme ={
    function CustomDrawerContent(props) {
   return (
   <SafeAreaView>
-    <Image
-      source={require('C:/my-app/image/554681583a113f259901cfdae11d6358.jpg')}
-      style = {styles.sideMenuProfileIcon}
-    />
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
       <DrawerItem label="Close drawer" 

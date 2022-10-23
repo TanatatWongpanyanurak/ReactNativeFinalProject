@@ -1,7 +1,7 @@
 export const Chord =[
     {
    name : 'Chord A',
-   items : [
+   item : [
    { Cname : 'A',
      image : require('C:/my-app/image/A/A-Chord.jpg')
    },
@@ -23,7 +23,7 @@ export const Chord =[
    ],
    
    name : 'Chord B',
-   items : [
+   item : [
    { Cname : 'B',
      image : require('C:/my-app/image/B/B-Chord.jpg')
    },
@@ -45,7 +45,7 @@ export const Chord =[
    ],
    
    name : 'Chord C',
-   items : [
+   item : [
    { Cname : 'C',
      image : require('C:/my-app/image/C/C-Chord.jpg')
    },
@@ -62,17 +62,17 @@ export const Chord =[
       image : require('C:/my-app/image/C/Cxm-Chord.jpg')
    },
    { Cname :  'Cm7',
-      image : require('C:/my-app/image/C/Cm7-Chord.jpg')
+      image : require('C:/my-app/image/C/Cm7-Chord-2.jpg')
    },
    ],
    
    name : 'Chord D',
-   items : [
+   item : [
    { Cname : 'D',
      image : require('C:/my-app/image/D/D-Chord.jpg')
    },
    { Cname : 'Dmaj7',
-      image : require('C:/my-app/image/D/Dmaj7-Chord.jpg')
+      image : require('C:/my-app/image/D/Dmaj7-Chord-2.jpg')
    },
    { Cname : 'D7',
       image : require('C:/my-app/image/D/D7-Chord.jpg')
@@ -88,7 +88,7 @@ export const Chord =[
    },
    ],
    name : 'Chord E',
-   items : [
+   item : [
    { Cname : 'E',
      image : require('C:/my-app/image/E/E-Chord.jpg')
    },
@@ -109,7 +109,7 @@ export const Chord =[
    },
    ],
    name : 'Chord F',
-   items : [
+   item : [
    { Cname : 'F',
      image : require('C:/my-app/image/F/F-Chord.jpg')
    },
@@ -123,7 +123,7 @@ export const Chord =[
       image : require('C:/my-app/image/F/F6-Chord.jpg')
    },
    { Cname : 'Fm',
-      image : require('C:/my-app/image/F/Fm-Chord.jpg')
+      image : require('C:/my-app/image/F/Fm-Chord-4.jpg')
    },
    { Cname :  'Fm7',
       image : require('C:/my-app/image/F/Fm7-Chord.jpg')
@@ -131,7 +131,7 @@ export const Chord =[
    ],
    
    name : 'Chord G',
-   items : [
+   item : [
    { Cname : 'G',
      image : require('C:/my-app/image/G/G-Chord.jpg')
    },
@@ -145,7 +145,7 @@ export const Chord =[
       image : require('C:/my-app/image/G/G6-Chord.jpg')
    },
    { Cname : 'Gm',
-      image : require('C:/my-app/image/G/GmChord.jpg')
+      image : require('C:/my-app/image/G/Gm-Chord.jpg')
    },
    { Cname :  'Gm7',
       image : require('C:/my-app/image/G/Gm7-Chord-2.jpg')

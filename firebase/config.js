@@ -1,7 +1,8 @@
-import firebase from 'firebase';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const config = {
-    apiKey: "AIzaSyBzyxmuBTGVYrURwqdv8kYXGk-hEpUPB_o",
+  apiKey: "AIzaSyBzyxmuBTGVYrURwqdv8kYXGk-hEpUPB_o",
   authDomain: "moblie-app-project.firebaseapp.com",
   projectId: "moblie-app-project",
   storageBucket: "moblie-app-project.appspot.com",
@@ -10,5 +11,5 @@ const config = {
   measurementId: "G-WN0DQQCXTL"
 };
 
-const fire = firebase.initializeApp(config);
-export default fire;
+const app = initializeApp(config);
+export const db = getFirestore(app);
