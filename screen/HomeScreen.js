@@ -66,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
                 >ไฟในห้องปิดอยู่!</Text>
                 
                 <Button     
-                    title='กรุณากดปุ่มเพื่อเปิดอีกครั้งไฟ'
+                    title='Switch'
                     onPress={()=> setShowModal(!showModal)}
                     style ={styles.buttonOpen}
                 />
