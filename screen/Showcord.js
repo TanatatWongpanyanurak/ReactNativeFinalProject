@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Image,SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image,SafeAreaView,ScrollView ,ImageBackground} from 'react-native'
 import React from 'react'
 import { db } from '../firebase/config.js'
 import { collection, getDocs } from "firebase/firestore";
@@ -24,27 +24,36 @@ const Showcord = ({navigation,route}) => {
   const _renderItem = ({ item }) => {
     return (
       <SafeAreaView style={{alignItems:'center'}}>
-      <View style={{flexWrap:'wrap',flexDirection:'row'}}>
+       <ScrollView style={{marginHorizontal:20}}>
+      <View style={{marginBottom:5}}>
         <Text>{item.Cname}</Text>
         <Image
-           resizeMode="cover"
           source={{ uri: item.image }}
           style={styles.thumbnail}
         />
       </View>
+      </ScrollView>
       </SafeAreaView>
     )
   }
 
 
   return (
+    <SafeAreaView>
+  <ScrollView>
     <View >
+      <ImageBackground
+      source={{ uri: 'https://i.pinimg.com/564x/81/6a/d5/816ad56d0b3116eaf83dd832813f1adb.jpg' }}
+      >
       <FlatList
         data={chord}
         keyExtractor={(item) => item.id.toString()}
         renderItem={_renderItem}
       />
+      </ImageBackground>
     </View>
+    </ScrollView>
+    </SafeAreaView>
   )
 }
 
@@ -86,6 +95,10 @@ const styles = StyleSheet.create({
   addButtonStyle: {
     width: '100%',        
     marginBottom: 15,
+},
+scrollView: {
+  backgroundColor: 'pink',
+  marginHorizontal: 20,
 },
 });
 

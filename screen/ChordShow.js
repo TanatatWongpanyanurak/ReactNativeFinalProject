@@ -60,9 +60,9 @@ const ChordShow = ({ navigation }) => {
         <View  >
             <SafeAreaView>
                <ImageBackground
-                source={{ uri: 'https://wallpapersmug.com/download/1280x2120/bc5fab/minimal-guitar-art.jpg' }}
+                source={{ uri: 'https://i.pinimg.com/564x/81/6a/d5/816ad56d0b3116eaf83dd832813f1adb.jpg' }}
                > 
-               <View style={{ justifyContent:'center',}}>
+               <View style={{ justifyContent:'center', marginTop: 15}}>
                 <TouchableOpacity
                     style={styles.addButtonStyle}
                     onPress={() => navigation.navigate('Showcord', { gui: 'Chord A' })}

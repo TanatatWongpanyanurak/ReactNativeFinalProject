@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from
 import React from 'react'
 import { db } from '../firebase/config.js'
 import { collection, getDocs } from "firebase/firestore";
+import { useFonts } from 'expo-font';
 import { useEffect, useState } from 'react'
 
 const Songg = [
@@ -38,6 +39,9 @@ const Songg = [
 
 
 const ChordShow = ({ navigation }) => {
+    const [fontsLoaded] = useFonts({
+      'WP DOMINO novel': require('C:/my-app/WP DOMINO novel.ttf')
+    })
     const [song, setSong] = useState([])
     const docRef = collection(db,'Song')
     useEffect(async () => {
@@ -67,7 +71,7 @@ const ChordShow = ({ navigation }) => {
               }}
             >
         <View style={{justifyContent:"center",alignItems:'stretch'}}>
-          <Text style={{fontSize: 15}}>{item.Sname}</Text>
+          <Text style={styles.fontz}>{item.Sname}</Text>
         </View>
         </TouchableOpacity>
         </SafeAreaView>
@@ -93,6 +97,10 @@ const styles = StyleSheet.create({
     addButtonStyle: {
         width: 400,
         height: 80,   
-        backgroundColor: "#6495ED",
+        backgroundColor: "#ECECEC",
     },
+    fontz:{
+        fontFamily:'WP DOMINO novel',
+        fontSize: 30
+    }
 })

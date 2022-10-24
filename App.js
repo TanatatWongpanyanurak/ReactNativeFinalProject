@@ -9,6 +9,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
+import { Ionicons } from '@expo/vector-icons';
 import React from "react";
 import HomeScreen from "./screen/HomeScreen";
 import ProductScreen from "./screen/ProductScreen";
@@ -63,7 +64,7 @@ const MyTheme ={
         return(
           <Stack.Navigator screenOptions={{
             headerStyle:{
-              backgroundColor:'#0096DA'
+              backgroundColor:'#7FB3D5'
             },
             headerTintColor:'#ffff',
             headerTitleStyle:{
@@ -82,7 +83,7 @@ const MyTheme ={
         return(
           <Stack.Navigator screenOptions={{
             headerStyle:{
-              backgroundColor:'#0096DA'
+              backgroundColor:'#F0B27A'
             },
             headerTintColor:'#ffff',
             headerTitleStyle:{
@@ -103,11 +104,20 @@ function MyDrawer (){
   return(
     <Drawer.Navigator useLegacyImplementation
        drawerContent={(props)=><CustomDrawerContent{...props}/>}
-        screenOptions ={{
-          drawerStyle:{
-            width:240
-          }
-        }}>
+        screenOptions ={({route})=> ({
+          tabBarIcon:({focused,colors,size}) =>{
+            let iconItem
+              if(route.name ==='Home'){
+                iconItem=focused?'mic':'mic-outline'
+              }else if(route.name ==='ChordShow'){
+                iconItem=focused?'ios-musical-notes':'ios-musical-notes-outline'
+              }
+              else if(route.name ==='SongShow'){
+                iconItem=focused?'reorder-four':'reorder-four-outline'
+              }
+              return <Ionicons name={iconItem} size={size} color={colors}/>
+          } 
+        })}>
         <Drawer.Screen name="Home" component={infoo} options={{headerShown:false}}/>
         <Drawer.Screen name="ChordShow" component={ProductStack}options={{headerShown:false}} />
         <Drawer.Screen name="SongShow" component={ProductStackz} options={{headerShown:false}}/>
