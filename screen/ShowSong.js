@@ -45,11 +45,20 @@ const ShowSong = ({navigation,route}) => {
 
 
   return (
-    <View>
+    <View >
+      <View style={{alignItems:'center'}}>
+      <Image
+        resizeMode ='center'
+        source={{uri:song.albummag}}
+        style={styles.imaa}
+      />
+      <View style ={{marginBottom: 15,marginTop: 15}}>
       <Text>Album: {song.Album}</Text>
       <Text>Genre: {song.Genre}</Text>
       <Text>Singer: {song.Singer}</Text>
       <Text>Songname: {song.Sname}</Text>
+      </View>
+      </View>
       <Image
         source={{uri:song.image}}
         style={styles.thumbnail}
@@ -75,9 +84,9 @@ const styles = StyleSheet.create({
   },
 
   thumbnail: {
-    width: 500,
+    width: 400,
 
-    height: 700,
+    height: 500,
   },
   dataContent: {
     marginTop: 5,
@@ -97,5 +106,10 @@ const styles = StyleSheet.create({
     width: '100%',        
     marginBottom: 15,
 },
+  imaa:{
+      width: 100,
+      height: 100,
+      marginTop: 15,
+  },
 });
 

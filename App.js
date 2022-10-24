@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput,SafeAreaView,Image} from "react-native";
+import { StyleSheet, Text, View, Button, TextInput,SafeAreaView,Image,  } from "react-native";
 import { NavigationContainer,DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -37,6 +38,25 @@ const MyTheme ={
     </DrawerContentScrollView>
     </SafeAreaView>
    );
+ }
+ const info = createNativeStackNavigator();
+ function infoo(){
+   return(
+     <Stack.Navigator screenOptions={{
+       headerStyle:{
+         backgroundColor:'#0096DA'
+       },
+       headerTintColor:'#ffff',
+       headerTitleStyle:{
+         fontWeight:'bold'
+       }
+
+     }}>
+       
+       <info.Screen name ='Info' component={Info} options={{headerShown:false}}/>
+       
+     </Stack.Navigator>
+   )
  }
       const Stack = createNativeStackNavigator();
       function ProductStack(){
@@ -77,7 +97,7 @@ const MyTheme ={
       }
 
 
-const Drawer = createDrawerNavigator();
+const Drawer = createBottomTabNavigator();
 
 function MyDrawer (){
   return(
@@ -88,9 +108,9 @@ function MyDrawer (){
             width:240
           }
         }}>
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="ChordShow" component={ProductStack} />
-        <Drawer.Screen name="SongShow" component={ProductStackz} />
+        <Drawer.Screen name="Home" component={infoo} options={{headerShown:false}}/>
+        <Drawer.Screen name="ChordShow" component={ProductStack}options={{headerShown:false}} />
+        <Drawer.Screen name="SongShow" component={ProductStackz} options={{headerShown:false}}/>
       </Drawer.Navigator> 
   );
 }

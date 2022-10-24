@@ -66,8 +66,8 @@ const ChordShow = ({ navigation }) => {
                 })
               }}
             >
-        <View>
-          <Text>{item.Sname}</Text>
+        <View style={{justifyContent:"center",alignItems:'stretch'}}>
+          <Text style={{fontSize: 15}}>{item.Sname}</Text>
         </View>
         </TouchableOpacity>
         </SafeAreaView>
@@ -76,7 +76,7 @@ const ChordShow = ({ navigation }) => {
   
   
     return (
-      <View>
+      <View style={{backgroundColor:'#6495ED'}}>
         <FlatList
           data={song}
           keyExtractor={(item) => item.id.toString()}
@@ -91,9 +91,8 @@ export default ChordShow
 
 const styles = StyleSheet.create({
     addButtonStyle: {
-        width: '100%',
-        marginBottom: 15,
-        height: 0.5,   
-        backgroundColor: "#C8C8C8",
+        width: 400,
+        height: 80,   
+        backgroundColor: "#6495ED",
     },
 })

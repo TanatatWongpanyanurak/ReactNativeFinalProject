@@ -31,12 +31,14 @@ const Info = ({ navigation }) => {
           backgroundColor: item.backgroundColor,
           alignItems: 'center',
           justifyContent: 'center',
-          padding: 180,
-          
+          padding:220
         }}>
+          <View style={{alignItems: 'center',
+          justifyContent: 'center',}}>
         <Text style={styles.introTitleStyle}>{item.title}</Text>
         <Image style={styles.introImageStyle} source={item.image} />
-        <Text style={styles.introTextStyle}>{item.text}</Text>
+        <Text >{item.text}</Text>
+        </View>
       </View>
     );
   };
@@ -89,8 +91,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   introImageStyle: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
   },
   introTextStyle: {
     fontSize: 18,
@@ -110,42 +112,32 @@ const styles = StyleSheet.create({
 const slides = [
   {
     key: 's1',
-    text: 'Calendar',
-    title: 'Mobile Recharge',
+    text: 'เนื้อเพลงและคอร์ดเพลงสำหรับผู้เริ่มเล่น',
+    title: 'Lyrics',
     image: {
       uri:
-        'https://i.pinimg.com/564x/55/46/81/554681583a113f259901cfdae11d6358.jpg',
+        'https://i.pinimg.com/564x/01/7b/d9/017bd9efd9b62b3d9730cb39ce9b98ca.jpg',
     },
     backgroundColor: '#FFFFFF',
   },
   {
     key: 's2',
-    title: 'Flight Booking',
-    text: 'Alram',
+    title: 'Chords',
+    text: 'คอร์ดกีตาร์ และวิธีการกดคอร์ด',
     image: {
       uri:
-        'https://i.pinimg.com/564x/5b/37/a0/5b37a0e22d1062fd29aa710f36f7176a.jpg',
+        'https://i.pinimg.com/564x/66/45/21/6645218d8345a8c2b174b54e2ec653ce.jpg',
     },
     backgroundColor: '#FFFFFF',
   },
   {
     key: 's3',
-    title: 'Great Offers',
-    text: 'Note',
+    title: 'Songs',
+    text: 'สร้างเสียงเพลงด้วยกีต้าร์กับเพื่อนๆของคุณ',
     image: {
       uri:
-        'https://i.pinimg.com/564x/39/d0/4b/39d04bd0d9930eda73f40b06c74e78f0.jpg',
+        'https://i.pinimg.com/564x/45/4e/c6/454ec6822221b2d4841ec45fc480741b.jpg',
     },
     backgroundColor: '#FFFFFF',
   },
-  {
-    key: 's4',
-    title: 'Best Deals',
-    text: 'Report ',
-    image: {
-      uri:
-        'https://i.pinimg.com/564x/82/6c/a8/826ca8a363ef0db3161b2827cb7bcbea.jpg',
-    },
-    backgroundColor: '#FFFFFF',
-  }
 ];

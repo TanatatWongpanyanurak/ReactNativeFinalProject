@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image,SafeAreaView } from 'react-native'
 import React from 'react'
 import { db } from '../firebase/config.js'
 import { collection, getDocs } from "firebase/firestore";
@@ -23,7 +23,8 @@ const Showcord = ({navigation,route}) => {
   }, [])
   const _renderItem = ({ item }) => {
     return (
-      <View style={{alignItems:'center',}}>
+      <SafeAreaView style={{alignItems:'center'}}>
+      <View style={{flexWrap:'wrap',flexDirection:'row'}}>
         <Text>{item.Cname}</Text>
         <Image
            resizeMode="cover"
@@ -31,12 +32,13 @@ const Showcord = ({navigation,route}) => {
           style={styles.thumbnail}
         />
       </View>
+      </SafeAreaView>
     )
   }
 
 
   return (
-    <View>
+    <View >
       <FlatList
         data={chord}
         keyExtractor={(item) => item.id.toString()}

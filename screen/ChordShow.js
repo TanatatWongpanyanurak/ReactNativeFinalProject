@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView, Image ,ImageBackground } from 'react-native'
 import React from 'react'
 const Chordd = [
     {
@@ -57,109 +57,119 @@ const ChordShow = ({ navigation }) => {
         </SafeAreaView>
     }
     return (
-        <View >
+        <View  >
             <SafeAreaView>
-            <TouchableOpacity
-                style={styles.addButtonStyle}
-                onPress={() => navigation.navigate('Showcord', { gui: 'Chord A' })}
-            >
-                <View>
-                    <Text style={styles.title}>Chord A</Text>
+               <ImageBackground
+                source={{ uri: 'https://wallpapersmug.com/download/1280x2120/bc5fab/minimal-guitar-art.jpg' }}
+               > 
+               <View style={{ justifyContent:'center',}}>
+                <TouchableOpacity
+                    style={styles.addButtonStyle}
+                    onPress={() => navigation.navigate('Showcord', { gui: 'Chord A' })}
+                >
+                    <View>
+                        <Text style={styles.title}>Chord A</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.addButtonStyle}
+                    onPress={() => navigation.navigate('Showcord', { gui: 'Chord B' })}
+                >
+                    <View >
+                        <Text style={styles.title}>Chord B</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.addButtonStyle}
+                    onPress={() => navigation.navigate('Showcord', { gui: 'Chord C' })}
+                >
+                    <View >
+                        <Text style={styles.title}>Chord C</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.addButtonStyle}
+                    onPress={() => navigation.navigate('Showcord', { gui: 'Chord D' })}
+                >
+                    <View>
+                        <Text style={styles.title}>Chord D</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.addButtonStyle}
+                    onPress={() => navigation.navigate('Showcord', { gui: 'Chord E' })}
+                >
+                    <View>
+                        <Text style={styles.title}>Chord E</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.addButtonStyle}
+                    onPress={() => navigation.navigate('Showcord', { gui: 'Chord F' })}
+                >
+                    <View >
+                        <Text style={styles.title}>Chord F</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.addButtonStyle}
+                    onPress={() => navigation.navigate('Showcord', { gui: 'Chord G' })}
+                >
+                    <View >
+                        <Text style={styles.title}>Chord G</Text>
+                    </View>
+                </TouchableOpacity>
                 </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.addButtonStyle}
-                onPress={() => navigation.navigate('Showcord', { gui: 'Chord B' })}
-            >
-                <View style={styles.container}>
-                    <Text style={styles.title}>Chord B</Text>
+                <View style={{alignItems:'center'}}>
+                <Image
+                    source={{ uri: 'https://backend.teroasia.com/uploads/pic_tiny/images/%E0%B8%AD_%E0%B9%81%E0%B8%94%E0%B8%874.jpg' }}
+                    style={styles.thumbnail}
+                />
                 </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.addButtonStyle}
-                onPress={() => navigation.navigate('Showcord', { gui: 'Chord C' })}
-            >
-                <View style={styles.container}>
-                    <Text>Chord C</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.addButtonStyle}
-                onPress={() => navigation.navigate('Showcord', { gui: 'Chord D' })}
-            >
-                <View style={styles.container}>
-                    <Text>Chord D</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.addButtonStyle}
-                onPress={() => navigation.navigate('Showcord', { gui: 'Chord E' })}
-            >
-                <View style={styles.container}>
-                    <Text>Chord E</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.addButtonStyle}
-                onPress={() => navigation.navigate('Showcord', { gui: 'Chord F' })}
-            >
-                <View style={styles.container}>
-                    <Text>Chord F</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.addButtonStyle}
-                onPress={() => navigation.navigate('Showcord', { gui: 'Chord G' })}
-            >
-                <View style={styles.container}>
-                    <Text>Chord G</Text>
-                </View>
-            </TouchableOpacity>
-        </SafeAreaView>
+                </ImageBackground>
+            </SafeAreaView>
         </View>
     )
 }
 
 export default ChordShow
 
- 
+
 const styles = StyleSheet.create({
     container: {
-      height: 80,
-      elevation: 3,
-      borderRadius: 5,
-      flexDirection: "row",
-      marginHorizontal: 20,
+        height: 80,
+        elevation: 3,
+        borderRadius: 5,
+        flexDirection: "row",
+        marginHorizontal: 20,
     },
     dataContainer: {
-      flex: 1,
+        flex: 1,
     },
-  
+
     thumbnail: {
-      width: 200,
-  
-      height: 200,
+        width: 200,
+        height: 200,
     },
     dataContent: {
-      marginTop: 5,
-      marginLeft: 15,
+        marginTop: 5,
+        marginLeft: 15,
     },
     title: {
-      color: "#444",
-      fontSize: 18,
-      fontWeight: "bold",
+        color: "#444",
+        fontSize: 18,
+        justifyContent:"space-between",
+        fontWeight: "bold",
     },
     detail: {
-      fontSize: 16,
-      color: "#888",
-      fontWeight: "700",
+        fontSize: 16,
+        color: "#888",
+        fontWeight: "700",
     },
     addButtonStyle: {
-      width: '100%',        
-      marginBottom: 15,
-      height: 7,   
-        backgroundColor: "#C8C8C8"
-  },
-  });
+        width: 300,
+        marginBottom: 15,
+        height: 60,
+    },
+});
 
-  
