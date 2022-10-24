@@ -1,27 +1,18 @@
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
 import React from 'react'
 import { db } from '../firebase/config.js'
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc,onSnapshot } from "firebase/firestore";
 import { async } from '@firebase/util';
 import { useEffect, useState } from 'react'
 const ShowSong = ({navigation,route}) => {
-    const {ss} = route.params
+    const {id} = route.params
   const [song, setSong] = useState([])
-  const docRef = collection(db,'Song')
+  const docRef = doc(db,'Song',id)
   useEffect(async () => {
-    const data = await getDocs(docRef,'Song')
-    let Data = []
-    data.forEach((doc) => {
-      const dataS = doc.data()
-      Data.push({
-        id: doc.id,
-        Album: dataS.Album,
-        Genre: dataS.Genre,
-        Singer: dataS.Singer,
-        Sname: dataS.Sname
-      })
-    })
-    setSong(Data)
+    const data = await getDoc(docRef)
+      const dada = data.data()
+      console.log(dada)
+    setSong(dada)
   }, [])
 
   const ItemSeparatorView = () => {
@@ -43,7 +34,11 @@ const ShowSong = ({navigation,route}) => {
         <Text>Genre: {item.Genre}</Text>
         <Text>Singer: {item.Singer}</Text>
         <Text>Songname: {item.Sname}</Text>
-        
+        <Image
+           resizeMode="cover"
+          source={{ uri: item.image }}
+          style={styles.thumbnail}
+        />      
       </View>
     )
   }
@@ -51,11 +46,13 @@ const ShowSong = ({navigation,route}) => {
 
   return (
     <View>
-      <FlatList
-        data={song}
-        ItemSeparatorView = {ItemSeparatorView}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={_renderItem}
+      <Text>Album: {song.Album}</Text>
+      <Text>Genre: {song.Genre}</Text>
+      <Text>Singer: {song.Singer}</Text>
+      <Text>Songname: {song.Sname}</Text>
+      <Image
+        source={{uri:song.image}}
+        style={styles.thumbnail}
       />
     </View>
   )
@@ -78,9 +75,9 @@ const styles = StyleSheet.create({
   },
 
   thumbnail: {
-    width: 100,
+    width: 500,
 
-    height: 100,
+    height: 700,
   },
   dataContent: {
     marginTop: 5,

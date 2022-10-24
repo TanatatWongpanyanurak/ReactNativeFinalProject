@@ -23,7 +23,7 @@ const Showcord = ({navigation,route}) => {
   }, [])
   const _renderItem = ({ item }) => {
     return (
-      <View>
+      <View style={{alignItems:'center',}}>
         <Text>{item.Cname}</Text>
         <Image
            resizeMode="cover"

@@ -15,6 +15,7 @@ import Showcord from "./screen/Showcord.js"
 import ChordShow from "./screen/ChordShow";
 import ShowSong from "./screen/ShowSong";
 import SongShow from "./screen/SongShow"
+import Info from "./screen/Info";
 const MyTheme ={
   ...DefaultTheme,
   colors:{
@@ -50,6 +51,7 @@ const MyTheme ={
             }
 
           }}>
+            
             <Stack.Screen name ='ChordShow' component={ChordShow}/>
             <Stack.Screen name ='Showcord' component={Showcord}/>
           </Stack.Navigator>
