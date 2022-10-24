@@ -8,6 +8,8 @@ Chords for beginners
 
 —-----------------------------------------
 ![image](https://user-images.githubusercontent.com/107970816/197572738-eaa369bc-7e5f-4b35-9a4b-0bd1476877c7.png)
+![image](https://user-images.githubusercontent.com/107970816/197587795-d60cc5ab-3a71-4898-b586-b5c3fbcb3404.png)
+
 ![image](https://user-images.githubusercontent.com/107970816/197572773-6f2d631b-4e1c-4858-ab77-29d6f54a4d7e.png)
 
 
